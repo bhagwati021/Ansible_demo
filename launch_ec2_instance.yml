@@ -26,7 +26,7 @@
     - name: Launch Ec2 instnace
       amazon.aws.ec2_instance:
         name: Ansible-created-instance
-        key_name: zaki-test
+        key_name: bhagwati-test-key
         region: ap-south-1
         instance_type: t2.micro
         image_id: ami-0fd05997b4dff7aac
@@ -47,7 +47,7 @@
       add_host: 
         name: "{{ec2.instances[0].public_dns_name}}"
         groups: dynamic_hosts
-        ansible_ssh_private_key_file: "/Users/zakimd/Desktop/devops/zaki-key.pem"
+        ansible_ssh_private_key_file: r"C:\Users\bhagw\Downloads\example_key_pair.pem"
         ansible_user: ec2-user
       
     - name: Debug dynamic inventory
@@ -63,7 +63,7 @@
       with_items:
         - "{{ groups['dynamic_hosts'] }}"
       vars: 
-        ansible_ssh_private_key_file: "/Users/zakimd/Desktop/devops/zaki-key.pem"
+        ansible_ssh_private_key_file: r"C:\Users\bhagw\Downloads\example_key_pair.pem"
         ansible_user: ec2-user
       when: groups["dynamic_hosts"] is defined and groups["dynamic_hosts"] | length >0
 
@@ -77,6 +77,6 @@
       with_items:
         - "{{ groups['dynamic_hosts'] }}"
       vars: 
-        ansible_ssh_private_key_file: "/Users/zakimd/Desktop/devops/zaki-key.pem"
+        ansible_ssh_private_key_file: r"C:\Users\bhagw\Downloads\example_key_pair.pem"
         ansible_user: ec2-user
       when: groups["dynamic_hosts"] is defined and groups["dynamic_hosts"] | length >0
